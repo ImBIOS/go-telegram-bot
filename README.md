@@ -4,6 +4,10 @@
 
 I just learn Golang with fun project. like this joke bot.
 
+## Prerequisite:
+
+Define the `botToken` environment variable in the vercel deployment settings.
+
 Use `github.com/joho/godotenv` if you want to use environment variable file.
 
 Just access the env variable if you use vercel and already defined the variable there.
