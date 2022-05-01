@@ -47,6 +47,7 @@ type webHookReqBody struct {
 func sendReply(chatID int64) error {
 	fmt.Println("sendReply called")
 
+	// Load the .env file
 	err := godotenv.Load()
 	if err != nil {
 		log.Fatal("Error loading .env file")
