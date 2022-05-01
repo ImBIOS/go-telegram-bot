@@ -9,8 +9,6 @@ import (
 	"net/http"
 	"os"
 	"strings"
-
-	"github.com/joho/godotenv"
 )
 
 func Handler(rw http.ResponseWriter, req *http.Request) {
@@ -47,14 +45,6 @@ type webHookReqBody struct {
 func sendReply(chatID int64) error {
 	fmt.Println("sendReply called")
 
-	// Load the .env file
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
-
-	token := os.Getenv("botToken")
-
 	// calls the joke fetcher fucntion and gets a random joke from the API
 	text, err := jokeFetcher()
 	if err != nil {
@@ -74,6 +64,9 @@ func sendReply(chatID int64) error {
 		return err
 	}
 
+	// Get botToken value from environment variable
+	token := os.Getenv("botToken")
+	
 	// Make a request to send our message using the POST method to the telegram bot API
 	resp, err := http.Post(
 		"https://api.telegram.org/bot"+token+"/"+"sendMessage",
